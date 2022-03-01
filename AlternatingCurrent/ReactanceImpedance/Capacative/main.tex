@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+	\section[Capacitor]{AC Capacitor Circuits}
+	\subsection[CapvRes]{Capacitors Vs. Resistors}
+	
+	Capacitor do not behave the same as resistors. Whereas resistors allow 
+		a 
+	flow of electrons through them directly proportional to the voltage drop, 
+	capacitors oppose changes in voltage by drawing or supplying current as 
+	they charge or discharge to the new voltage level. \\ \\
+	The flow of electrons “through” a capacitor is directly proportional to the 
+	rate of change of voltage across the capacitor. This opposition to voltage 
+	change is another form of reactance, but one that is precisely opposite to 
+	the kind exhibited by inductors.
+	\subsection[Equation]{Capacitor Circuit Characteristics}
+	Expressed mathematically, the relationship between the current “through” 
+	the capacitor and rate of voltage change across the capacitor is as such:
+	\begin{equation}\label{eq:capacitor}
+		i(t) = C e'(t) = C\frac{de}{dt}
+	\end{equation}
+	Now let $e(t):=|E|\sin V_\theta t = |E|\angle0$.  It then follows from this 
+	definition in conjunction with equation (\ref{eq:capacitor}),
+	$$ i(t) = C|E|V_\theta \cdot \cos V_\theta t = C|E|V_\theta \cdot \sin 
+	\big(V_\theta(t + 0.5\pi)\big)$$
+	$$ i(t) = CV_\theta|E|\angle90^{\circ}$$
+	The above equation in conjunction with the definition of $e(t)$ implies 
+	that the current leads the voltage by $90$ degrees, or, to put it another 
+	way, the voltage lags the current by $90$ degrees.
+	\subsection[Reactance]{A Capacitor's Reactance}
+	The reactance of a capacitor with a capacitance of $C$ farads is given by:
+	\begin{equation}\label{eq:reactance}
+		X_C=\frac{1}{V_\theta C} = \frac{1}{2\pi f C}
+	\end{equation}
+	Via Ohm's Law:
+	$$ e = X_C i$$
+	$$ X_C = \frac{e}{i} = \frac{|E|\angle0}{CV_\theta|E|\angle90^{\circ}}$$
+	$$ X_C = \frac{1}{CV_\theta} \angle-90^{\circ}$$
+	\section[In Series]{Series Resistor-Capacitor Circuits}
+	In the last section, we learned what would happen in simple resistor-only 
+	and capacitor-only AC circuits. Now we will combine the two components 
+	together in series form and investigate the effects. \\ \\
+	Suppose we have a circuit with a resistor with a resistance of $R=5\Omega$ 
+	in series with a capacitor with a capacitance of $C=100\mu\text{F}$ and an 
+	AC power supply of $e:=E_T=10\text{V}\angle0$ with a frequency of $f=60 
+	\text{Hz}$. \\ \\
+	Via KVL,
+	$$ E_T = e = E_R + E_C$$
+	Via the above equation in conjunction with Ohm's Law,
+	$$ 10\text{V}\angle0 = Ri + X_Ci = i(R + X_C)$$
+	$$ i = \frac{10\text{V}\angle0}{R + X_C}$$
+	\subsection[Impedance]{Impedance Calculations}
+	The impedance of the capacitor in polar form is given by:
+	$$ X_C = \frac{s}{100\mu\text{F}\cdot 120 \pi} \angle -90^{\circ} = 
+	26.52\Omega\angle-90^{\circ}$$
+	And in rectangular form:
+	$$ X_C = j\cdot 26.52\Omega\sin-0.5\pi = - j \cdot 26.52 \Omega$$
+	The total impedance in rectangular form is given by:
+	$$ X = R + X_C = 5\Omega - j \cdot 26.52 \Omega$$
+	And, in polar form:
+	$$ X = |X|\angle\theta$$
+	$$ |E| = 26.99 \Omega$$
+	$$ \theta = \arcsin -\frac{26.52\Omega}{|E|} = -79.29^{\circ}$$
+	The current is thus:
+	$$ i = 
+	\frac{10\text{V}\angle0}{26.99\Omega\angle-79.29^{\circ}}=333.44\text{mA}\angle79.29^{\circ}$$
+\end{document}

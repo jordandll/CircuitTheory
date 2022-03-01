@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+	\section[Amplitude]{Measurements of AC Magnitude}
+	\subsection[Peak]{Peak Method}
+	One way to express the magnitude or amplitude of an AC waveform is the peak 
+	or peak to base paradigm.  Under this paradigm, the magnitude is equal to 
+	the difference between the peak or crest value and the base value (which is 
+	usually zero unless 
+	the curve has been shifted along the y-axis). \\ \\
+	Suppose there is a sine wave given by the function:
+	$$ f(x):=f(x\vert A, \omega):=A\cdot \sin \omega 2\pi x\text{ , where }A, 
+	\omega \ne 0$$
+	The parameter $A \in \mathbb{R}\setminus\{0\}$ is equal to the magnitude of 
+	the wave given by $f(x)$.  The other parameter, $\omega \in 
+	\mathbb{R}\setminus \{0\}$, is equal to the frequency of the wave or curve 
+	in Hertz.
+	\subsection[PeakToPeak]{Peak to Peak Method}
+	Another way of expressing the magnitude is known as the peak to peak (P-P) 
+	paradigm.  Here, the magnitude is equal to the difference between one of 
+	the crest values and the value of one of the troughs adjacent to said 
+	crest. \\ \\
+	Here, the parameter, $A$, in the parametric function that defines $f(x)$ 
+	needs to be set to half of the magnitude obtained using this paradigm in 
+	order for the curve given by that function to have the magnitude that it is 
+	supposed to have.
+	\subsection[Relationships]{Relationships}
+	Let $u(x)$ be defined as the unit step function and let $f(x):=\sin x$
+	The average value given by $f(x)$, denoted as 'AVG', from $0$ to $\pi$ is 
+	given by:
+	$$\text{AVG} = \frac{\int_{0}^{\pi}f(x)\cdot dx}{\pi} = \frac{-\cos \pi + 
+	\cos 0}{\pi} = \frac{1 + 1}{\pi} = 0.637 $$
+	The mean square (MS) part of the root mean square (RMS) is given by:
+	$$ MS = \frac{\int_{0}^{\pi}\sin^2x\cdot dx}{\pi}$$
+	And the RMS is equal to the square root of MS.
+	$$ RMS = \sqrt{MS} = 0.707$$
+	\paragraph[Relation3]{Now let the function,} $f(x)$ be redefined as 
+	$f(x):=f_1(x)+f_2(x)$, and let $f_1(x):=\big(u(x)-u(x-a)\big)x$ and 
+	$f_2(x):=-f_1(x-a) + a$.
+	$$ \text{AVG}=\frac{\int_{0}^{2a}f(x)\cdot dx}{2a} = 
+	\frac{\int_{0}^{a}f_1(x)\cdot dx + \int_{a}^{2a}f_2(x) \cdot dx}{2a}$$
+	$$ \text{AVG} = \frac{0.5a^2 + \int_{a}^{2a}(2a-x) \cdot dx}{2a}$$
+	$$ \text{AVG} = \frac{0.5a^2 + 4a^2 - 2a^2 - 2a^2 + 0.5a^2}{2a}$$
+	$$ \text{AVG} = \frac{a^2}{2a} = 0.5a$$
+	The notion that the curve given by $f_1(x)$ is equal to the curve given by 
+	$f_2(x)$ reflected about the vertical line given by $x=a$ implies that:
+	$$ \int_{0}^{a}f_1(x) \cdot dx = \int_{a}^{2a}f_2(x)\cdot dx$$
+	This means that another formula to obtain the average is:
+	$$ \text{AVG} = \frac{2\int_{0}^{a}f_1(x) \cdot dx}{2a} = 
+	\frac{\int_{0}^{a}f_1(x) \cdot dx}{a}$$
+	$$ \text{AVG} = \frac{0.5a^2}{a} = 0.5a$$
+	To find the $MS$, first let $g(x):=g_1(x)+g_2(x)$, and let 
+	$g_1(x):=\big(u(x)-u(x-a)\big)x^2$ and 
+	$g_2(x):=\big(u(x-a) - u(x-2a)\big)(x-2a)^2$. \\ \\
+	The notion that the curve given by $g_1(x)$ is equal to the curve given by 
+	$g_2(x)$ reflected about the vertical line given by $x=a$ implies that:
+	$$ \int_{0}^{a}g_1(x) \cdot dx = \int_{a}^{2a}g_2(x)\cdot dx$$
+	This means that:
+	\begin{align*}
+		\text{MS}&=\frac{\int_{0}^{a}g_1(x)\cdot dx}{a} \\
+		 &= \frac{a^3}{3a} = \frac{a^2}{3}
+	\end{align*}
+	Finally,
+	$$ \text{RMS} = \sqrt{\text{MS}} = \frac{a}{\sqrt{3}} = 0.577a$$
+\end{document}

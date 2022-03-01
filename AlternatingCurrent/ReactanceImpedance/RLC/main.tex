@@ -1,0 +1,138 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+	\section[Series]{RLC Series Circuit}
+	Suppose there is a circuit with an AC power supply of $e:=E_T=120$V with a 
+	frequency of $f=60$Hz, a resistance of $R=250\Omega$, an inductance of 
+	$L=650\text{mH}=0.650\text{H}$, and a capacitance of 
+	$C=1.5\mu\text{F}=1.5\cdot10^{-6}\text{F}$. \\ \\
+	Via KVL,
+	\begin{equation}\label{eq:series-circuit}
+		E_T=E_L + E_R + E_C
+	\end{equation}
+	There are two ways to find the current, denoted as '$i$'.  One involves 
+	using complex numbers to represent the waveform of $E_T$ as well as the 
+	impedance of each circuit component and subsequently the total impedance.  
+	The other way involves solving the differential equation derived from 
+	equation (\ref{eq:series-circuit}).
+	\subsection[ComplexNum]{Using the Complex Number Method}
+	Via KCL,
+	\begin{equation}\tag{\ref{eq:series-circuit}}
+		E_T = i(Z_R + Z_L + Z_C)
+	\end{equation}
+	First we find the reactance of each component.
+	$$ X_R = R = 250\Omega$$
+	$$ X_L = 120\pi \frac{\text{rad.}}{\text{s}} L = 78\pi\Omega$$
+	$$ X_C = \frac{\text{s}}{120\pi\text{rad.} \cdot C} = 1768.39\Omega$$
+	And now the impedance of each component in polar form.
+	$$ Z_R = Z_R\angle0 = R\angle0$$
+	$$ Z_L = X_L\angle90^{\circ}$$
+	$$ Z_C = X_C\angle-90^{\circ}$$
+	In rectangular form:
+	$$ Z_R = R$$
+	$$ Z_L = j \cdot X_L$$
+	$$ Z_C = - j\cdot X_C$$
+	The total impedance is thus:
+	$$ Z:=Z_R+Z_L+Z_C = R + j(X_L-X_C)$$
+	Next, we convert $Z$ to polar form for the final calculation.
+	$$ Z=|Z|\angle Z_\theta$$
+	$$|Z|=\sqrt{Z_x^2 + Z_y^2} = 1543.39\Omega$$
+	$$ Z_\theta = \arctan \frac{Z_y}{Z_x}-80.68^{\circ}$$
+	Via equation (\ref{eq:series-circuit}),
+	$$ i = \frac{E_T}{Z} = 
+	\frac{120\text{V}\angle0}{1543.39\Omega\angle-80.68^{\circ}} = 
+	77.73\text{mA}\angle80.68^{\circ}$$
+	\section[Parallel]{RLC Parallel Circuit}
+	Suppose we have a parallel circuit with the same resistance, inductance, 
+	and capacitance as the series circuit presupposed in the previous section. 
+	\\ \\
+	Via KVL,
+	\begin{equation}\label{eq:parallel-volt}
+		E_T=E_R=E_C=E_L
+	\end{equation}
+	And via KCL,
+	\begin{equation}\label{eq:parallel-curr}
+		I_T=I_R + I_L + I_C
+	\end{equation}
+	Via equation (\ref{eq:parallel-volt}), Ohm's Law, and substitution,
+	$$ I_R = \frac{E_T}{Z_R} = \frac{120\text{V}\angle0}{250\Omega\angle0} = 
+	0.48\text{A}$$
+	$$ I_C = \frac{E_T}{Z_C} = 
+	\frac{120\text{V}\angle0}{1768.39\Omega\angle-90^{\circ}} = 67.86\text{mA} 
+	\angle90^{\circ}$$
+	$$ I_L = \frac{E_Z}{Z_L} = 489.70\text{mA}\angle-90^{\circ}$$
+	And to find the total current, first we need to convert the constituent 
+	currents to rectangular form.
+	$$ I_R = 480\text{mA}$$
+	$$ I_C = j \cdot 67.86\text{mA}$$
+	$$ I_L = - j \cdot 489.70\text{mA}$$
+	$$ I_T = 480\text{mA} - j \cdot 421.85\text{mA}$$
+	In polar form:
+	$$ I:=I_T=|I|\angle I_\theta$$
+	$$ |I| = \sqrt{I_x^2 + I_y^2} = 639\text{mA}$$
+	$$ I_\theta = \arctan \frac{I_y}{I_x} = -41.31^{\circ}$$
+	This allows us to find the total impedance via Ohm's Law,
+	$$ Z = \frac{E_T}{I_T} = 
+	\frac{120\text{V}\angle0}{0.639\text{A}\angle-41.31^{\circ}}=187.79\Omega\angle41.31^{\circ}$$
+	\section[SeriesParallel]{Series-parallel R, L, and C}
+	Suppose there is a series-parallel circuit with a capacitor with 
+	$C_1=4.7\mu\text{F}=4.7\cdot10^{-6}\text{F}$ in series with a node 
+	consisting of an inductor with $L=650\text{mH}$ and a capacitor with 
+	$C_2=1.5\mu\text{F}$ (branch 1) in parallel with a resistor with 
+	$R=470\Omega$ (branch 2).  Also suppose that this circuit has an AC power 
+	supply of $e:=E_T=120\text{V}$ with a frequency of $f=60\text{Hz}$.\\ \\
+	First need to find the impedance of $C_1$ and the node, denoted as '$Z_1$' 
+	and '$Z_2$' respectively.  The reactance of $C_1$ is given by:
+	$$ X_1 = \frac{\text{s}}{120\pi \text{rad.} \cdot C_1} = 564.38\Omega$$
+	And the impedance in polar form is:
+	$$ Z_1 = X_1\angle-90^{\circ}$$
+	The impedance of the node is given by:
+	$$ Z_2 = \frac{1}{\frac{1}{Z_R} + \frac{1}{Z_C + Z_L}}$$
+	$$ Z_R = R\angle0$$
+	$$ Z_C = \frac{\text{s}}{120\pi \text{rad.} \cdot C_2}\angle-90^{\circ}$$
+	$$ Z_L = 120\pi \frac{\text{rad.}}{\text{s}}L \angle 90^{\circ}$$
+	$$ X_C = 1768.39 \Omega$$
+	$$ X_L = 245.04\Omega$$
+	$$ Z_{2a}:=Z_C+Z_L = j (X_L-X_C) = -j \cdot 1523.34\Omega$$
+	In polar form:
+	$$ Z_{2a} = |Z_{2a}|\angle Z_{2a\theta}$$
+	$$ |Z_{2a}| = 1523.34\Omega$$
+	$$ Z_{2a\theta} = \arcsin -1 = -90^{\circ}$$
+	And the reciprocal:
+	$$ \frac{1}{Z_{2a}} = \frac{1}{1523.34\Omega}\angle90^{\circ}$$
+	In rectangular form:
+	$$ \frac{1}{Z_{2a}} = j \cdot \frac{1}{1523.34\Omega}$$
+	$$ \frac{1}{Z_2} = \frac{1}{470\Omega} +j \cdot \frac{1}{1523.34\Omega} $$
+	Now, we convert the above to polar form.
+	$$ z:=\frac{1}{Z_2} = |z|\angle z_\theta$$
+	$$ |z|=2.227\text{m}\Omega$$
+	$$ z_\theta = \arctan \frac{470}{1523.34} = 17.15^{\circ}$$
+	And finally,
+	$$ Z_2 = \frac{1}{2.227\text{m}\Omega} \angle -17.15^{\circ} = 
+	449.11\Omega\angle -17.15^{\circ}$$
+	Via Ohm's Law,
+	$$ E_T = (Z_1+Z_2)I_T$$
+	First we get $Z_1$ and $Z_2$ in rectangular form.
+	$$ Z_1 = - j\cdot 564.38 \Omega$$
+	$$ Z_2 = 449.11\Omega(0.955-j\cdot0.295)$$
+	$$ Z_T:= Z_1+Z_2 = 429.14\Omega - j \cdot 696.87 \Omega$$
+	$$ Z_T=|Z_T|\angle Z_{T\theta}$$
+	$$ |Z_T| = 818.41 \Omega$$
+	$$ Z_{T\theta} = \arctan \frac{-696.87}{429.14} = -58.37^{\circ}$$
+	$$ I:=I_T=\frac{E_T}{Z_T} = \frac{120\text{V}\angle0}{|Z_T|\angle 
+	Z_{T\theta}} = 146.63\text{mA}\angle 58.37^{\circ}$$
+	Via Ohm's Law,
+	$$ E_{C1} = Z_1I = 564.38\Omega\cdot 
+	146.63\text{mA}\angle(58.37^{\circ}-90^{\circ}) = 
+	82.75\text{V}\angle-31.63^{\circ}$$
+	Via KVL,
+	$$ E_{C2} + E_L = E_R = E_T-E_{C1}$$
+	We need to get $E_{C1}$ in rectangular form to evaluate the right side of 
+	the 
+	above equation.
+	$$ E_{C1} = 82.75\text{V}(\cos -31.63^{\circ} + j \cdot \sin 
+	-31.63^{\circ})$$
+	$$ E_R = 49.54\text{V} + j\cdot 43.4\text{V}$$
+	$$ E_R=|E_R|\angle E_{R\theta}$$
+\end{document}

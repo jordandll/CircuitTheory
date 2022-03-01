@@ -1,0 +1,160 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+	In this document we examine the potentiometer in a number of circuits, 
+	including in series, parallel, and singleton circuits (i.e. one with just 
+	the potentiometer and a power supply).
+	\section{Definition}
+	A potentiometer is a passive device with three terminals and a variable 
+	resistance of '$R_P$' ohms.  Said resistance is a function of the angle, 
+	denoted as '$\theta$', of the knob attached to the device.
+	\section{Presuppositions}
+	In all of the circuit applications contained in this document there is 
+	supposed to be a power supply with a voltage of $E$ volts.  Said voltage 
+	may be variable and a function of time or constant.
+	\section{Singleton}
+	The circuit equation is:
+	\begin{equation}\label{eq:V_P}
+		E = V_P = R_P \cdot i
+	\end{equation}
+	Since the supplied voltage does not change in response to the angle of the 
+	knob -- i.e. $E$ is not a function of $\theta$ -- only the current, denoted 
+	as '$i$', can change as a function of $\theta$.
+	$$ i(\theta) = \frac{E}{R_P(\theta)}$$
+	If $E$ changes with time, we need to introduce time, denoted as '$t$', to 
+	the equation and subsequently, the function that gives the current, making 
+	it a multivariate function.
+	$$ i(t, \theta) = \frac{E(t)}{R_P(\theta)}$$
+	\section[Series]{In Series}
+	As is the case with a singleton circuit, only the current changes with the 
+	angle of the knob;  The supplied voltage is not a function of $\theta$.
+	\subsection[Resistor]{With Another Resistor}
+	Suppose there is a circuit with a pentiometer and a resistor with 
+	a resistance of $R$ ohms.  The voltage running across this resistor is 
+	proportional to the current running through the circuit.  This means that 
+	changes in $\theta$ lead to changes in the voltage running across said 
+	resistor and the potentiometer.  In other words, turning the knob 	
+	\emph{divides} the voltage between the two components.
+	\subsection[Capacitor]{With a Capacitor}
+	Now suppose there is a circuit with a potentiometer and a capacitor with a 
+	capacitance of $C$ farads.
+	$$ E = V_P + V_C$$
+	Here, '$V_C$' denotes the voltage running across the capacitor which is 
+	given by:
+	\begin{equation}\label{eq:V_C}
+		V_C = \frac{1}{C} \int i \cdot dt
+	\end{equation}
+	Via the first equation of this subsection, the above equation, equation 
+	(\ref{eq:V_P}), and substitution we end up with the following 
+	integral-differential equation:
+	$$ E = R_P \cdot i + \frac{1}{C} \int i \cdot dt$$
+	To turn this into a differential equation that can be used to solve for the 
+	current in terms of time we first must consider the function that gives $i$ 
+	a uni variate function with $t$ as the variable and $\theta$ as the 
+	parameter.  This is because the charge in the capacitor, which is a factor 
+	of $V_C$, is equal to the primitive integral of the current with respect to 
+	time;  Thus, to turn the above equation into a differential equation we 
+	must \emph{fully} differentiate throughout as opposed to \emph{partially} 
+	differentiate throughout with respect to time.  And doing so gives, 
+	assuming the supplied voltage is constant, gives:
+	$$ R_P \cdot i' + \frac{1}{C} i = 0$$
+	The general solution is of the form:
+	$$ i := i(t) := i(t \vert \theta) = Ae^{mt}$$
+	where $A \in \mathbb{R}$ is an arbitrary constant to be solved for using 
+	some initial value problem (IVP) and $m$ is the root of the auxiliary 
+	equation:
+	$$ R_P \cdot m + \frac{1}{C} = 0$$
+	$$ CR_P \cdot m + 1 = 0$$
+	$$ m := m(\theta) = - \frac{1}{CR_P(\theta)}$$
+	Remember that $\theta$ is a parameter of the function that gives the 
+	current.  In other words, $\theta$ is considered a constant when 
+	differentiating or integrating with respect to the independent variable, 
+	time or $t$. \\ \\
+	For the IVP let $q$ be defined as:
+	$$ q:=q(t) := \int i \cdot dt$$
+	And, the IVP is:
+	$$ E = R_P \cdot i(0) + \frac{1}{C} q(0)$$
+	$$ E - \frac{1}{C}q(0) = R_P \cdot i(0) $$
+	$$ i(0) = i(0 \vert \theta) = A(\theta) = \frac{E}{R_P(\theta)} + 
+	m(\theta)q(0)$$
+	\section[Parallel]{In Parallel}
+	Recall that a potentiometer has three terminals.  These terminals usually 
+	form a linear array.  Whatever shape they form, let the paradigm be 
+	such that the first and last terminals are the poles of the voltage drop 
+	when the potentiometer is in a series circuit.  The first and last 
+	terminals are denoted as '$T$' and '$B$' respectively, while the middle 
+	terminal is denoted as '$M$'. \\ \\
+	With this paradigm, the magnitude of the voltage running across the 
+	potentiometer is equal to the magnitude of the voltage drop from terminal 
+	$T$ to terminal $B$.
+	\begin{equation}\tag{\ref{eq:V_P}}
+		|V_P| = |V_{TB}| = |R_P \cdot i|
+	\end{equation}
+	The above principle makes no assumption about the polarity of said voltage 
+	drop.  Assuming $T$ has a polarity of $(+)$ and that this also the 
+	polarity in the previous sections, the voltage drop from $T$ to $B$ is 
+	equal to the voltage running across the potentiometer.
+	\begin{equation}\tag{\ref{eq:V_P}}
+		V_P = V_{TB} = R_P \cdot i
+	\end{equation}
+	\subsection[Resistor]{With Another Resistor}
+	Suppose there is a parallel circuit with a potentiometer that is partially 
+	in parallel and partially in series with a resistor with a resistance of 
+	$R$ ohms.  We say 'partially' because $T$ to $M$ is in series with $M$ to 
+	$B$ and with said resistor, while $M$ to $B$ is in parallel with the 
+	resistor.
+	$$ E = V_{TM} + V_R = V_{TM} + V_{MB} = V_P$$
+	Breaking it down by each voltage drop, we have the following:
+	$$ V_{TM} = R_{TM}(i_1 + i_2)$$
+	$$ V_{MB} = R_{MB}\cdot i_1$$
+	$$ V_R = R \cdot i_2$$
+	Since there are two current to solve for, we need two unique equations.  
+	Thankfully, via the first equation of this subsection, we have them.
+	$$ V_{TM} + V_R = V_{TM} + V_{MB}$$
+	$$ V_R = V_{MB}$$
+	$$ R \cdot i_2 = R_{MB} \cdot i_1$$
+	As for the second equation:
+	$$ V_{TM} + V_{MB} = E$$
+	$$ R_{TM}(i_1 + i_2) + R_{MB}\cdot i_1 = E$$
+	If both currents are already given and we simply want to find the 
+	resistance of the potentiometer ($R_P$) then we can use the following 
+	equation:
+	$$ E = \frac{i_1 + i_2}{\frac{1}{R_P} + \frac{1}{R}}$$
+	$$ E \left(\frac{1}{R_P} + \frac{1}{R} \right) = i_1 + i_2$$
+	$$\frac{E}{R_P} = i_1 + i_2 - \frac{E}{R} $$
+	$$ R_P = \frac{E}{i_1 + i_2 - \frac{E}{R}}$$
+	\section[Resistance]{Finding the Resistance}
+	Assuming the relationship between the angle, denoted as '$\theta$', of the knob and the resistance, denoted as '$R_P$', is linear, the following parametric function generalizes any specific (ie non-parametric) function that gives the resistance as a function of the angle.
+	$$ R_P(\theta \vert \alpha, \beta) = \alpha \theta +\beta$$
+	If the resistance is proportional to the angle then the parametric function that generalizes functions that are specific to such a hypothetical is given by:
+	$$ R_P(\theta \vert \alpha) = R_P(\theta \vert \alpha, 0) = \alpha \theta$$
+	Under these conditions, only one reliable test value needs to be passed as an argument to the function to find the leading coefficient of the specific function. \\ \\
+	When the relationship is linear but not proportional, two reliable test values are needed.
+	\subsection{Examples}
+	Herein are some examples of finding the function that gives $R_P$ involving actual potentiometers and actual test results.  The instrument used to measure the resistance -- and any other electrical property -- is an Extech EX330 multimeter.
+	\paragraph[Example 1]{The first example} involves a breadboard trim potentiometer - 10K.  Assuming a linear taper -- it isn't specified on the product page, so we will have to find out through experimentation -- the specific function that gives $R_P$ is:
+	$$ R_P(\theta) := R_P(\theta \vert a, b) = a \theta + b$$
+	The arguments passed to $R_P(\theta)$ during the first round of tests are $0$ and $0.25\pi$ radians. \\ \\
+	The resistance from terminal $T$ to terminal $B$ is always equal to $R_P$, both of which were approximately equal to a constant $1 \text{ k} \Omega$ throughout testing.
+	$$ R_P(0) \approx R_P(0.25\pi) \approx 1000 \Omega$$
+	$$ R_{TB}(\theta) = R_P(\theta) \approx 1000 \Omega$$
+	The measured resistance from terminals $T$ to $M$ and $M$ to $B$ unsurprisingly always added up to approximately the measured resistance of the potentiometer.  The aforementioned resistances did vary with the angle.
+	\begin{equation}\label{eq:sum-resists}
+		R_{TM} + R_{MB} \approx R_P
+	\end{equation}
+	$$ R_{MB}(0) \approx 511 \Omega$$
+	$$ R_{MB}(0.25\pi) \approx 345 \Omega$$
+	The above approximations can be used to approximate the coefficients of the functions that give $R_{TM}$ and $R_{MB}$.  First, let $R_{MB}(\theta)$ be defined as:
+	$$ R_{MB}(\theta) := R_P(\theta \vert a, b) = a\theta + b$$ 
+	Via the two pairs of measured values,
+	$$ a \cdot 0 + b \approx 511 \Omega$$
+	$$ b \approx 511 \Omega$$
+	$$ a \cdot 0.25\pi + 511 \Omega \approx 345 \Omega$$
+	$$ a \approx - \frac{664}{\pi} \Omega \approx -211.36 \Omega$$
+	Via the above equations,
+	$$ R_{MB}(\theta) \approx -211.36 \theta + 511$$
+	Via the above equation and equation (\ref{eq:sum-resists}),
+	$$ R_{TM}(\theta) \approx R_P(\theta) - R_{MB}(\theta) \approx 211.36 \theta + 489 $$
+	Note that it is rational that the sum of the actual, as opposed to the measured, resistances is equal to the actual resistance of the potentiometer. 
+\end{document}

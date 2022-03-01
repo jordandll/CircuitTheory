@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+	\section{Examples}
+	Herein are some example problems from allaboutcircuits.com.
+	\paragraph{Example 1:}Suppose there is a series-parallel circuit with a 
+	battery supplying $E=24\text{V}$ of voltage and  two 
+	parallel circuits, denoted as '$PC1$' and '$PC2$', that are in series with 
+	one another, with each parallel circuits having two resistors with a 
+	resistance of:
+	\begin{itemize}
+		\item $R_1 = 100 \Omega$
+		\item $R_2 = 250 \Omega$
+		\item $R_3 = 350 \Omega$
+		\item $R_4 = 200 \Omega$
+	\end{itemize}
+	The total resistances of each parallel circuit is given by:
+	\begin{equation}\label{eq:total-resistance-1}
+		R_{T1} = \frac{1}{\frac{1}{100 \Omega} + \frac{1}{250 \Omega}}
+	\end{equation}
+	\begin{equation}\label{eq:total-resistance-2}
+		R_{T2} = \frac{1}{\frac{1}{350 \Omega} + \frac{1}{200 \Omega}}
+	\end{equation}
+	The total current running through the circuit is given by:
+	$$ E = R_{T1}i + R_{T2}i = (R_{T1} + R_{T2})i$$
+	$$ 24\text{V} = i \cdot 198.7 \Omega$$
+	\begin{equation}\label{eq:current-total}
+		i \approx 120.78\text{mA}
+	\end{equation}
+	The voltage running across $PC1$ is given by:
+	\begin{equation}\label{eq:voltage-1}
+		E_1 = R_{T1}i = 8.63\text{V}
+	\end{equation}
+	Which of course is equal to the voltage running across each of it's 
+	components.  This fact allows us to find the branch currents of $PC1$.
+	$$ E_1 = R_1i_1 = R_2i_2$$
+	$$ 8.63\text{V} = i_1 \cdot 100\Omega$$
+	\begin{equation}\label{eq:current-1}
+		i_1 \approx 0.0863\text{A} = 86.3\text{mA}
+	\end{equation}
+	$$ 8.63\text{V} = i_2 \cdot 250 \Omega$$
+	\begin{equation}\label{eq:current-2}
+		i_2 \approx 34.52 \text{mA}
+	\end{equation}
+	Verification:
+	$$ 86.3\text{mA} + 34.52 \text{mA} = 120.82\text{mA} \approxeq 
+	120.78\text{mA}$$
+	Note that the fact that they are only approximately equal is ok since the 
+	values for the branch current were actually approximations -- they were 
+	rounded to have no more than two decimal digits on the right of the decimal 
+	point -- to begin with.
+	$$ E_2 = R_3i_3 = R_4i_4 = R_{T2}i $$
+	$$ i_3 = \frac{R_{T2}i}{R_3} = \frac{i}{1+\frac{7}{4}}$$
+	\begin{equation}\label{eq:current-3}
+		i_3 \approx 43.92 \text{mA}
+	\end{equation}
+	$$ i_3 + i_4 = i$$
+	\begin{equation}\label{eq:current-4}
+		i_4 = i-i_3 \approx 76.86\text{mA}
+	\end{equation}
+\end{document}

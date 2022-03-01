@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+	\section[Arithmetic]{Complex Number Arithmetic}
+	The relationship between rectangular and polar form is as follows:
+	$$\mathbf{A}= |\mathbf{A}|\angle\theta = A_x + A_yj$$
+	Here, $j:=\sqrt{-1}$, denotes the imaginary number, while '$A_x$' and 
+	'$A_y$' denote the $x$ and $y$ complements of $\mathbf{A}$ as a vector and 
+	the real and imaginary components of $\mathbf{A}$ as a complex number.  
+	They are given by:
+	$$ A_x = |\mathbf{A}|\cos\theta$$
+	$$ A_y = |\mathbf{A}|\sin\theta$$
+	Which leaves us with the rectangular form of:
+	$$ \mathbf{A} = |\mathbf{A}|(\cos\theta + j\cdot\sin\theta)$$
+	\subsection[Addition]{Addition and Subtraction}
+	It is best to do this in rectangular form.
+	$$\mathbf{A} + \mathbf{B} = (A_x + B_x) + (A_y+B_y)j$$
+	\subsection[Multiplication]{Multiplication and Division}
+	It is best to do this in polar form.
+	$$\mathbf{A}\mathbf{B}=(|\mathbf{A}|\angle\varphi)(|\mathbf{B}|\angle\lambda)=|\mathbf{A}|
+	|\mathbf{B}|\angle(\varphi+\lambda)$$
+	It makes sense that the magnitude is equal to the product of the two 
+	magnitudes of the complex numbers being multiplied, but what about the 
+	angle being the sum of the two numbers' angles?
+	$$ 
+	\mathbf{A}\mathbf{B}=|\mathbf{A}||\mathbf{B}|(\cos\varphi+j\cdot\sin\varphi)(\cos\lambda
+	 + 
+	j\cdot\sin\lambda)$$
+	$$\mathbf{A}\mathbf{B}= (A_x+A_yj)(B_x+B_yj) = A_xB_x + j(B_xA_y + A_xB_y) 
+	- A_yB_y$$
+	$$ AB_x = A_xB_x - A_yB_y = |\mathbf{AB}|\cos(\varphi + \lambda) = 
+	|\mathbf{A}||\mathbf{B}|\cos(\varphi + \lambda)$$
+	The above is consistent with the dot product rule in conjunction with the 
+	notion that if either $\mathbf{A}$ or $\mathbf{B}$ were to be reflected 
+	about the x-axis, the resulting vector would have the same x-complement 
+	while the y-complement would be equal to the additive inverse of it's 
+	previous value, the one before this reflection event. \\ \\
+	Let $\mathbf{B'}$ be defined as:
+	$$\mathbf{B'}:=|\mathbf{B}|\angle(-\lambda)=B_x-B_yj$$
+	$\mathbf{B'}$ is equal to $\mathbf{B}$ reflected about the x-axis, 
+	therefore the angle between $\mathbf{B'}$ and $\mathbf{A}$ is equal to 
+	$\varphi+\lambda$.  Via the dot product formula:
+	$$ \mathbf{A\cdot B'} = A_xB'_x + A_yB'_y = A_xB_x-A_yB_y = 
+	|\mathbf{A}||\mathbf{B'}|\cos(\varphi+\lambda)$$
+	The aforementioned reflection event of course does not change the 
+	magnitude, therefore,
+	$$ |\mathbf{A}||\mathbf{B'}|\cos(\varphi+\lambda) = 
+	|\mathbf{A}||\mathbf{B}|\cos(\varphi+\lambda)$$
+	And now, for the y-complement (imaginary component):
+	$$ AB_y = B_xA_y + A_xB_y = |\mathbf{AB}|\sin(\lambda+\varphi) = 
+	|\mathbf{A}||\mathbf{B}|\cos(0.5\pi - \lambda - \varphi)$$
+	Let $\mathbf{A'}$ be defined as:
+	$$ \mathbf{A'} := |\mathbf{A}|\angle(0.5\pi - \varphi)$$
+	It then follows that:
+	$$ \mathbf{A'} = A_y + A_xj$$
+	Note the duality between $\mathbf{A}$ and $\mathbf{A'}$ with respect to the 
+	real and imaginary components of each;  The real component of $\mathbf{A'}$ 
+	is equal to the imaginary component of $\mathbf{A}$ and vice versa. \\ \\
+	The angle between $\mathbf{A}$ and $\mathbf{B}$, denoted as 
+	'$\theta(\mathbf{A},\mathbf{B})$', is equal to $|\varphi-\lambda|$.  
+	Similarly, the angle between $\mathbf{A'}$ and $\mathbf{B}$ is equal to 
+	$|0.5\pi-\varphi-\lambda|$.
+	$$ \theta:=\theta(\mathbf{A'},\mathbf{B})=|0.5\pi-\varphi-\lambda|$$
+	Via the dot product formula,
+	\begin{align*}
+		\mathbf{A'\cdot B} &= A'_xB_x + 
+		A'_yB_y=|\mathbf{A'}||\mathbf{B}|\cos\theta \\
+		 &= A_yB_x + A_xB_y = |\mathbf{A}||\mathbf{B}|\cos\theta
+	\end{align*}
+	The above is consistent with the equation that gives $AB_y$.
+	\section[Examples]{Some Examples Circuits with AC}
+	Find the sum of the following voltages:
+	$$ 15\text{V}\angle0 + 12\text{V}\angle35^{\circ} + 
+	22\text{V}\angle-64^{\circ} = E_T$$
+	$$ E_T = 15\text{V}\angle0 + 12\text{V}\angle0.194\pi + 
+	22\text{V}\angle-0.356\pi$$
+	Each voltage source can be expressed in rectangular form.
+	$$ E_1 := 15\text{V}\angle0=15\text{V}(\cos0 + j\cdot\sin 0) = 15\text{V}$$
+	$$ E_2 := 12\text{V}\angle0.194\pi = 12\text{V}(\cos 0.194\pi + j\cdot\sin 
+	0.194\pi)$$
+	$$ E_3:=22\text{V}\angle-0.356\pi = 22\text{V}(\cos-0.356\pi + 
+	j\cdot\sin-0.356\pi)$$
+	$$ E_T = 34.46\text{V} - j \cdot 12.92 \text{V} $$
+	And now, back to polar form:
+	$$ |E_T| = \text{V}\cdot\sqrt{34.46^2 + 12.92^2} = 36.80 \text{V}$$
+	$$ \sin E_\theta = -\frac{12.92}{|E_T|}$$
+	$$ E_T = |E_T|\angle E_\theta = 36.80\text{V}\angle-0.114\pi = 
+	36.80\text{V}\angle-20.55^{\circ}$$
+	
+\end{document}

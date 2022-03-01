@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+	\section[RC-Circuit]{Resistor-Capacitor Circuits}
+	Suppose there is a circuit with a battery supplying $E$ volts of energy and 
+	a capacitor with a capacitance of $C$ farads in parallel with a resistor 
+	with a resistance of $R$ ohms.  By applying Ohm's Law to this parallel 
+	circuit, we get:
+	$$ E=I_TR_T =(I_1+I_2)R$$
+	Here, the total current, denoted as '$I_T$', is equal to the sum of the two 
+	branch currents flowing through the capacitor and the resistor.  Said 
+	branch currents are denoted as '$I_1$' and '$I_2$' respectively. \\ \\
+	The four unknown quantities here are the aforementioned branch currents and 
+	the voltages running across their respective circuit components.  To find 
+	the 	values or the functions that give the values of these quantities -- 
+	in other words, to solve for these quantities -- we will need four unique 
+	equations.  Thankfully we have them.
+	$$ V_C = \frac{1}{C}\int I_1 \cdot dt$$
+	$$ V_R = RI_2$$
+	$$ I_T = I_1 + I_2$$
+	$$ I_T = \frac{E}{R}$$
+	Via a basic principle of parallel circuits and the presupposition that the 
+	resistor is in parallel with the capacitor,
+	$$ V_C = V_R = RI_2 = \frac{1}{C} \int I_1 \cdot dt$$
+	$$ CRI_2 = \int I_1 \cdot dt$$
+	$$ I_1:=I_1(t) = CRI_2'(t)$$
+	Via the above equation, the first equation of this section, and 
+	substitution,
+	$$ R(CRI_2'(t) + I_2(t) = E(t) := E$$
+	The above is a differential equation with $I_2$ as the dependent variable 
+	and time as the independent variable.  Assuming $E(t)$ is constant, the 
+	general solution for $I_2(t)$ is:
+	$$ I_2(t) = Ae^{mt} + \frac{E}{R}$$
+	Here, $m$ is the solution to the auxiliary equation:
+	$$ CRm + 1 = 0$$
+	$$ m = - \frac{1}{CR}$$
+	and $A \in \mathbb{R}$ is an arbitrary constant that can be solved for 
+	using an IVP that involves the initial charge in the capacitor, denoted as 
+	'$q_0$'.
+	$$ q(t) = \int I_1 \cdot dt = CRI_2(t) = CRAe^{mt} + CE$$
+	$$ q(0) = C(RA + E) = q_0$$
+	$$ RA = \frac{q_0}{C} - E$$
+	$$ A = \frac{1}{R}\left(\frac{q_0}{C}-E\right)$$
+	This leaves us with a parametric specific solution for $I_2(t)$.
+	$$ I_2 := I_2(t) := I_2(t \vert C, R, q_0) = Ae^{mt} + \frac{E}{R}$$
+	If the initial charge is equal to zero Coloumbs then the current flowing 
+	through the resistor will start off at zero amps and then rapidly increase 
+	before plateauing at around what the measure of the current would be if 
+	there were no capacitor to siphon some of the current.
+	$$ i(t) := I_2(t \vert C, R, 0) = \frac{E}{R}(1-e^{mt})$$
+	$$ \lim_{t \to \infty}i(t) = \frac{E}{R}$$
+	\subsection{Applications}
+	One common application of capacitors in parallel with other nodes of a 
+	circuit is to provide stability to the circuit.  This quality is the result 
+	of the 
+	capacitor drawing or 'sucking' some of the excess current away from the 
+	rest of the circuit during a spike in voltage.  The following equation 
+	describes how that works and can be used to calculate the amount of current 
+	that is drawn by the capacitor.
+	$$ V_C = \frac{1}{C} \int I_C \cdot dt$$
+	$$ C \cdot V_C = \int I_C \cdot dt$$
+	$$ I_C = C \cdot V_C'(t) = C \cdot \frac{dV_C}{dt}$$
+	As one can see in the above equation, the current is proportional to the 
+	change in voltage running across the capacitor over time.  The faster the 
+	voltage changes, the higher the magnitude of the current drawn by the 
+	capacitor will be.
+\end{document}

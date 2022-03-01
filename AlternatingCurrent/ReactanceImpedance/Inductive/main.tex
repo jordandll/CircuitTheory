@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+	\section[Induction]{AC Inductor Circuits}
+	\subsection[Equation]{Relationship between Inductance and Voltage}
+	\begin{equation}\label{eq:inductor}
+		e(t)=Li'(t)=L\frac{di}{dt}
+	\end{equation}
+	Here, '$L$' denotes the inductance in Henry's(H), and '$i$' and '$e$' 
+	denote the current and voltage in amps(A) and volts(V) respectively.
+	\subsection[Reactance]{Reactance vs. Resistance}
+	The reactance, denoted as '$X_L$, of an inductor is measured in Ohms -- it 
+	corresponds to the resistance of a resistor -- and is given by the equation:
+	\begin{equation}\label{eq:reactance}
+		X_L=V_\theta L = 2\pi f L
+	\end{equation}
+	In other words, the reactance of an inductor with an inductance of $L$ is 
+	equal to the angular velocity ($V_\theta$) multiplied by the inductance.  
+	The angular velocity is equal to the frequency in Hertz, denoted as '$f$', 
+	multiplied by 
+	$2\pi$ radians or $360$ degrees.
+	\paragraph[Proof]{To prove this,} first let $e(t):=|E|\cdot\sin V_\theta 
+	t$, where '$E$' denotes the complex number representation of the AC 
+	waveform given by $e(t)$, and subsequently, '$|E|$' denotes the magnitude 
+	or amplitude of said waveform. \\ \\
+	Via equation (\ref{eq:inductor}) and this definition:
+	$$ i = \frac{1}{L}\int e(t) \cdot dt = - \frac{|E|}{LV_\theta} \cos 
+	V_\theta t$$
+	$$ iLV_\theta = - |E|\cdot\cos V_\theta t = |E|\cdot \sin \big((V_\theta 
+	(t-0.5\pi)\big) $$
+	$$ V_\theta L = X_L = \frac{|E|\angle-90^{\circ}}{i}$$
+	Since the current is given by:
+	$$ i = \frac{|E|}{X_L}\angle-90^{\circ}$$
+	And, via a further generalization of Ohm's Law:
+	$$ \frac{e}{i} = Z_L$$
+	Here, '$Z_L$' denotes the impedance of the inductor which is a complex 
+	number with the reactance being equal to the magnitude of.
+	$$ \frac{V_\theta L|E|\angle0}{|E|\angle-90^{\circ}} = Z_L = V_\theta L 
+	\angle 90^{\circ} = X_L\angle90^{\circ}$$
+	\section[In Series]{Series Resistor-Inductor Circuits}
+	Suppose there is a circuit with an AC power supply of 
+	$e:=E_T=10\text{V}\angle0$ with a frequency of $f=60 \text{Hz}$, and a 
+	resistor with a resistance of $R=5\Omega$ in series with a inductor with an 
+	inductance of $L=10\text{mH}=0.01\text{H}$. \\ \\
+	Via KVL,
+	\begin{equation}\label{eq:series-circuit}
+		e=E_T=E_R+E_L
+	\end{equation}
+	There are two ways to solve for the current, denoted as '$i$'.  One 
+	involves representing the AC waveforms associated with the quantities of 
+	the circuit and circuit components as complex numbers.  The other involves 
+	solving the differential equation derived from the circuit equation derived 
+	from KVL.
+	\subsection[Complex]{Using the Complex Number Method}
+	Via Ohm's Law and equation (\ref{eq:series-circuit}),
+	\begin{equation}\tag{\ref{eq:series-circuit}}
+		e=Ri + X_Li=i(R+X_L)
+	\end{equation}
+	Which leaves us with:
+	$$ i=\frac{e}{R+X_L}$$
+	The impedance of the inductor is given by:
+	\begin{align*}
+		X_L &= 
+		120\pi\frac{\text{rad.}}{\text{s}}\cdot0.01\text{H}\angle90^{\circ} \\
+		 &= 1.2\pi \Omega \angle90^{\circ}
+	\end{align*}
+	In rectangular form:
+	$$ X_L = j \cdot 1.2\pi \Omega$$
+	The total impedance in rectangular form is given by:
+	$$ X = R + X_L = 5\Omega + j \cdot 1.2\pi \Omega$$
+	And in polar form:
+	$$ X = |X|\angle\theta$$
+	where,
+	$$ |X| = 6.26\Omega$$
+	$$ \theta = \arcsin \frac{1.2\pi}{|X|} = 37.03^{\circ}$$
+	Which means the current is given by:
+	$$ i = \frac{10\text{V}\angle0}{6.26\Omega\angle37.03^{\circ}} = 
+	1.597\text{A}\angle-37.03^{\circ}$$
+	Finally, as a trig. function:
+	$$i:=i(t)=1.597\text{A}\cdot \sin \big(120\pi(t-0.205\pi)\big)$$
+	\subsection[DiffEq.]{Using the Differential Equation Method}
+	The circuit equation can be rewritten as a differential equation with the 
+	current being the dependent variable and time being the independent 
+	variable.
+	\begin{equation}\tag{\ref{eq:series-circuit}}
+		10\text{V}\sin 120\pi t = 0.01\text{H}i'(t) + 5\Omega i(t)
+	\end{equation}
+	The solution will be of the following form:
+	$$ i(t) = a\cdot\sin V_\theta t + b\cdot\cos V_\theta t + Ae^{mt}$$
+	Here, $m$ is the root to the auxiliary equation, while $A \in \mathbb{R}$ 
+	is an arbitrary constant to be solved for using an initial value problem 
+	(IVP).
+	$$ 0.01m + 5 = 0$$
+	\begin{equation}\label{eq:m}
+		m = -\frac{5\Omega}{0.01\text{H}} = -500 \frac{\Omega}{\text{H}}
+	\end{equation}
+	To solve for '$a$' and '$b$':
+	$$ a5\cdot\sin V_\theta t - bV_\theta0.01\sin V_\theta t = 
+	10\sin V_\theta t$$
+	\begin{equation}\label{eq:trig_1}
+		5 a - 0.01 V_\theta b = 10
+	\end{equation}
+	\begin{equation}\label{eq:trig_2}
+		5 b + 0.01 V_\theta a = 0
+	\end{equation}
+	Via equation (\ref{eq:trig_1}),
+	$$ 5a = 10 + 0.01V_\theta b$$
+	\begin{equation}\label{eq:a-in-b}
+		a = 2 + 0.24\pi b
+	\end{equation}
+	Via the above and equation (\ref{eq:trig_2}),
+	$$ 5b + 1.2\pi (2+0.24\pi b) = 0$$
+	$$ 5b + 0.288\pi^2b = - 2.4\pi$$
+	\begin{equation}\label{eq:b}
+		b = -0.961
+	\end{equation}
+	And via equations (\ref{eq:b}), (\ref{eq:a-in-b}), and substitution,
+	\begin{equation}\label{eq:a}
+		a = 1.275
+	\end{equation}
+	The two terms of the solution containing trig functions as factors can be 
+	added up to one term with one trig function.  To do this, first we shall 
+	convert the aforementioned terms into their complex number representation 
+	in polar form.  Let '$\mathbf{a}$' and '$\mathbf{b}$' be defined as:
+	$$ \mathbf{a} := a\angle0$$
+	$$ \mathbf{b} := b\angle90^{\circ}$$
+	Now we convert them to rectangular form:
+	$$ \mathbf{a} = a\cos 0 + j\cdot a\sin0 = a$$
+	$$ \mathbf{b} = b(\cos0.5\pi + j \cdot \sin 0.5\pi) = j \cdot b $$
+	Adding them gives:
+	$$ \mathbf{c}:=\mathbf{a} + \mathbf{b} = a + j\cdot b$$
+	And, in polar form:
+	$$ \mathbf{c} = c\angle c_\theta$$
+	$$ c = \sqrt{a^2 + b^2} = 1.597$$
+	$$ c_\theta = \arcsin \frac{b}{c} = -37^{\circ}$$
+	Which leaves us with the general solution of:
+	\begin{equation}\label{eq:general-i}
+		i = a \cdot \sin V_\theta t + b \cdot \cos V_\theta t + Ae^{mt} = 1.597 
+		\sin \big(V_\theta (t - 37^{\circ}) \big) + A e^{mt}
+	\end{equation}
+	Assuming an IVP of $i(0)=0$ leaves us with the specific solution.
+	$$ i(0) = c\cdot\sin(-V_\theta37^{\circ}) + A = 0$$
+\end{document}

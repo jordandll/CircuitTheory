@@ -1,0 +1,18 @@
+|A|sin(x) + |B|sin(x+t) = |C|sin(x+b)
+
+
+Assuming:
+	t:=pi/6
+	|A|:=0.5
+	|B|:=2
+	C:=A+B
+Note that 'A', 'B', and 'C' denote 2D vectors.
+Ax = |A|cos(0)=|A|
+Ay = |A|sin(0)=0
+Bx = |B|cos(pi/6)
+By = |B|sin(pi/6)
+
+C = (Ax+Bx)i + (Ay+By)j
+|C| = sqrt((Ax+Bx)**2 + (Ay+By)**2)
+2|A||C|cos(b) = (2|A|**2 + 2|A||B|cos(t))
+cos(b) =  (|A| + |B|*cos(t)) / (|C|)
