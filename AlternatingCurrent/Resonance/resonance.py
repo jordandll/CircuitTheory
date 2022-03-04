@@ -23,7 +23,22 @@ def X_C_gen(C: float):
 	return lambda f: 1/(C*Vt(f))
 
 def tank_circ_zero_gen(L: float, C: float, E_T: float):
+	"""The amplitude of the current -- in amps -- flowing through a simple LC parallel circuit
+	(i.e. tank circuit) with zero resistance as a function of the frequency (f) of the AC waveform,
+	the inductance (L), the capacitance (C), and the magnitude of the supplied or total voltage (E_T).
+	Note that this is a parametric lambda function that returns a univariate function, with the only
+	variable being the aforementioned frequency, denoted as 'f', in Hertz (Hz).
+
+	Parameters:
+		L:   Inductance in Henries(H);
+		C:   Capacitance in Farads (F);
+		E_T: Magnitude of the total voltage in volts (V)."""
 	return lambda f: E_T*abs((C*L*(2*pi*f)**2-1)/(2*pi*f*L))
+
+def simple_series(R, L, C, E_T):
+	X_L = X_L_gen(L)
+	X_C = X_C_gen(C)
+	return lambda f: E_T/sqrt(R**2+(X_L(f)-X_C(f))**2)
 
 def A_gen(R, L, C, e):
 	X_L = X_L_gen(L)

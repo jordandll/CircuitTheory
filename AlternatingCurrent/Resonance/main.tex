@@ -36,40 +36,54 @@
 	$$ \frac{1}{|Z_T|} = \left | \frac{V_\theta^2 CL - 1}{V_\theta L} \right|$$
 	\subsection[NonZeroR]{Non-zero Resistance}
 	Realistically, except in the case of a superconductor, there will be some 
-	resistance.  At resonance, the impedance will have a magnitude that is 
+	resistance.  Assuming this resistance is in parallel with the LC parallel 
+	circuit, at resonance, the impedance will have a magnitude that is 
 	equal to the this resistance with a phase shift of zero.
 	\paragraph[In Parallel]{When in parallel} with the tank circuit, the total 
 	impedance is given by:
 	$$ Z_T = \frac{1}{D + \frac{1}{Z_R}} = Z_R = R\angle0$$
+	And the amplitude of the current:
+	$$ |I|(f\vert R, L, C, E_T) = \frac{|E_T|}{|Z_T|}$$
+	Let '$D$' be redefined as:
+	$$ D := \frac{1}{X_R} + j \cdot \left( \frac{1}{X_C} - 
+	\frac{1}{X_L}\right)$$
+	It then follows that,
+	$$|D| = \left|j \cdot \left( \frac{1}{X_C} - \frac{1}{X_L}\right) + 
+	\frac{1}{X_R}\right|=\sqrt{\frac{1}{R^2} + \left( \frac{1}{X_C} - 
+	\frac{1}{X_L} \right)^2}$$
+	And that:
+	$$ |Z_T| = \frac{1}{|D|}$$
+	Which means that:
+	$$ |I| = |E_T| \cdot |D|$$
 	\paragraph[In Series]{When in series} with the tank circuit, the total 
 	impedance is given by:
 	$$ Z_T = Z_R + \frac{1}{D} = X_R  + j \cdot  \frac{V_\theta L}{V_\theta^2 
 	CL -1}$$
 	And the amplitude of the current:
 	$$ |Z_T| = \sqrt{R^2 + \frac{V_\theta^2L^2}{(V_\theta^2CL - 1)^2}}$$
-	$$  |I|(f \vert L, C, E_T) = \frac{E_T}{|Z_T|} $$
-	\subsection[MagCur]{The Amplitude of the Current}
-	The amplitude or magnitude of the current wave form as a function of the 
-	frequency is 
-	given by:
-	\begin{equation}\label{eq:mag-cur}
-		|I|(f \vert R) := |I|(f \vert R, L, C, E_T) = \frac{E_T}{|Z_T|}
-	\end{equation}
-	Let '$D$' be redefined as:
-	$$ D:= \frac{1}{Z_L} + \frac{1}{Z_C} + \frac{1}{Z_R} = \frac{1}{R} + j 
-	\cdot \left( \frac{1}{X_C} - \frac{1}{X_L}\right)$$
-	Since:
-	$$ \frac{1}{Z_T} = D$$
-	it follows that
-	\begin{equation}\tag{\ref{eq:mag-cur}}
-		|I|(f \vert R) = E_T \cdot |D|
-	\end{equation}
-	Finally,
-	$$ |D| = \sqrt{\frac{1}{R^2} + \left(\frac{1}{X_C} - 
-	\frac{1}{X_L}\right)^2}$$
-	In terms of the angular velocity, denoted as '$V_\theta$',
-	$$ |D| = $$
+	$$ |I|(f \vert R, L, C, E_T) = \frac{E_T}{|Z_T|}$$
 	\section[Series]{Simple Resonance Series}
+	When a capacitor and an inductor are connected in series to an AC power 
+	supply, the magnitude of the impedance is equal to zero at resonant 
+	frequency, assuming a resistance of zero.  This implies that the current 
+	has an amplitude that is undefined, or, more specifically, an amplitude 
+	that is equal to the magnitude of the supplied voltage, presumably a finite 
+	positive value, divided by zero.
+	$$ E_T = Z_T I$$
+	$$ Z_T = Z_L + Z_C = j \cdot (X_L - X_C)$$
+	Via the above equation, in conjunction with the fact that $X_C=X_L$, which 
+	is implied by the assumption that we are at resonant frequency,
+	$$ Z_T = 0$$
+	Thankfully, for our safety, with the exception of superconductors, the 
+	connecting wires typically have some resistance.  So even when there is no 
+	resistor in the circuit, the magnitude of the impedance is not really equal 
+	to zero and the amplitude of the current has a finite value.
+	$$  Z_T = Z_R + Z_L + Z_C = X_R + j\cdot (X_L - X_C)$$
+	At resonance, the total impedance is equal to the impedance derived from 
+	the total resistance of the circuit. \\ \\
+	As for the magnitude of the current:
+	$$ |Z_T| = \sqrt{R^2 + (X_L-X_C)^2}$$
+	$$ |I| = \frac{|E_T|}{|Z_T|}$$
 	
 	\section[Series-Parallel]{Resonance in Series-Parallel Circuits}
 	Recall that the resonant frequency is given by:
