@@ -22,6 +22,9 @@ def X_C_gen(C: float):
  	aforementioned frequency."""
 	return lambda f: 1/(C*Vt(f))
 
+def tank_circ_zero_gen(L: float, C: float, E_T: float):
+	return lambda f: E_T*abs((C*L*(2*pi*f)**2-1)/(2*pi*f*L))
+
 def A_gen(R, L, C, e):
 	X_L = X_L_gen(L)
 	return lambda f: e*sqrt(R**2 + Wt(f)*(C*(R**2+X_L(f)**2)-L)**2)/(R**2+X_L(f)**2)

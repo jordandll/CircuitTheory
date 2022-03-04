@@ -2,16 +2,86 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \begin{document}
+	\section[Parallel]{Simple Parallel (Tank Circuit) Resonance }
+	When the inductor and capacitor have equal reactances, the circuit is in a 
+	state of resonance.  The frequency at which this occurs is known as the 
+	resonant frequency and is given by:
+	$$ 2 \pi f L = \frac{1}{2 \pi f C}$$ 
+	$$ f^2 = \frac{1}{4\pi ^2 C L}$$
+	\begin{equation}\label{eq:res-freq}
+	f_{\text{res}}=\frac{1}{2\pi \sqrt{LC}}
+	\end{equation}
+	\subsection[ZeroR]{Zero Resistance}
+	Assuming the resistance is zero, a simple LC parallel circuit will have an 
+	undefined impedance -- more specifically, the reciprocal of zero, which is 
+	a domain error/undefined -- and a current of zero at resonance.  This is 
+	due to the notion that at resonance, the two components will have equal 
+	reactances but opposing phase shifts, or, in other words, the complex 
+	number representations of their impedance wave forms will have equal 
+	magnitude but opposite directions.
+	$$ Z_T = \frac{1}{\frac{1}{Z_L} + \frac{1}{Z_C}}$$
+	Let '$D$' be defined as:
+	$$ D := \frac{1}{Z_L} + \frac{1}{Z_C} = \frac{1}{X_L}\angle-90^{\circ} + 
+	\frac{1}{X_C}\angle90^{\circ} = j \cdot \left(\frac{1}{X_C} - \frac{1}{X_L} 
+	\right) = 
+	0$$
+	Thus:
+	$$ Z_T = \frac{1}{D} = \frac{1}{0} = \text{undefined}$$
+	The amplitude of the current is given by:
+	$$ |I|(f \vert L, C, E_T) = \frac{E_T}{|Z_T|}$$
+	$$ |Z_T| = \frac{1}{|D|} $$
+	$$ \frac{1}{|Z_T|} = \left| \frac{1}{X_C} - \frac{1}{X_L}\right | = \left| 
+	2\pi f C - 
+	\frac{1}{2 \pi f L} \right |$$
+	$$ \frac{1}{|Z_T|} = \left | \frac{V_\theta^2 CL - 1}{V_\theta L} \right|$$
+	\subsection[NonZeroR]{Non-zero Resistance}
+	Realistically, except in the case of a superconductor, there will be some 
+	resistance.  At resonance, the impedance will have a magnitude that is 
+	equal to the this resistance with a phase shift of zero.
+	\paragraph[In Parallel]{When in parallel} with the tank circuit, the total 
+	impedance is given by:
+	$$ Z_T = \frac{1}{D + \frac{1}{Z_R}} = Z_R = R\angle0$$
+	\paragraph[In Series]{When in series} with the tank circuit, the total 
+	impedance is given by:
+	$$ Z_T = Z_R + \frac{1}{D} = X_R  + j \cdot  \frac{V_\theta L}{V_\theta^2 
+	CL -1}$$
+	And the amplitude of the current:
+	$$ |Z_T| = \sqrt{R^2 + \frac{V_\theta^2L^2}{(V_\theta^2CL - 1)^2}}$$
+	$$  |I|(f \vert L, C, E_T) = \frac{E_T}{|Z_T|} $$
+	\subsection[MagCur]{The Amplitude of the Current}
+	The amplitude or magnitude of the current wave form as a function of the 
+	frequency is 
+	given by:
+	\begin{equation}\label{eq:mag-cur}
+		|I|(f \vert R) := |I|(f \vert R, L, C, E_T) = \frac{E_T}{|Z_T|}
+	\end{equation}
+	Let '$D$' be redefined as:
+	$$ D:= \frac{1}{Z_L} + \frac{1}{Z_C} + \frac{1}{Z_R} = \frac{1}{R} + j 
+	\cdot \left( \frac{1}{X_C} - \frac{1}{X_L}\right)$$
+	Since:
+	$$ \frac{1}{Z_T} = D$$
+	it follows that
+	\begin{equation}\tag{\ref{eq:mag-cur}}
+		|I|(f \vert R) = E_T \cdot |D|
+	\end{equation}
+	Finally,
+	$$ |D| = \sqrt{\frac{1}{R^2} + \left(\frac{1}{X_C} - 
+	\frac{1}{X_L}\right)^2}$$
+	In terms of the angular velocity, denoted as '$V_\theta$',
+	$$ |D| = $$
+	\section[Series]{Simple Resonance Series}
+	
 	\section[Series-Parallel]{Resonance in Series-Parallel Circuits}
 	Recall that the resonant frequency is given by:
-	\begin{equation}\label{eq:res-freq}
+	\begin{equation}\tag{\ref{eq:res-freq}}
 		f_{\text{res}}=\frac{1}{2\pi \sqrt{LC}}
 	\end{equation}
 	The impedance of a parallel circuit with resonant frequency is equal to 
 	infinity (assuming there is zero resistance, which only happens in a super 
 	conductor), which implies that the current is equal to zero.  Conversely, 
 	the impedance is equal to zero -- again, assuming zero resistance -- under 
-	the same conditions, implying that the current is of infinite magnitude or 
+	the same conditions in a simple series circuit, implying that the current 
+	is of infinite magnitude or 
 	amplitude.
 	\subsection[High-Res]{Calculating the Resonant Frequency of a 
 	High-Resistance Circuit}
