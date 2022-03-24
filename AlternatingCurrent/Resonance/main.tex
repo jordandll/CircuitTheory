@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{graphicx}
 \begin{document}
 	\section[Parallel]{Simple Parallel (Tank Circuit) Resonance }
 	When the inductor and capacitor have equal reactances, the circuit is in a 
@@ -82,9 +83,51 @@
 	At resonance, the total impedance is equal to the impedance derived from 
 	the total resistance of the circuit. \\ \\
 	As for the magnitude of the current:
-	$$ |Z_T| = \sqrt{R^2 + (X_L-X_C)^2}$$
+	\begin{equation}\label{eq:simple-series-magZ_T}
+		|Z_T| = \sqrt{R^2 + (X_L-X_C)^2}
+	\end{equation}
 	$$ |I| = \frac{|E_T|}{|Z_T|}$$
-	
+	\paragraph[Example 1]{For an example,} let '$|I|(f)$' be defined as:
+	$$ |I|(f):=|I|(f \vert 1\Omega, 100\text{mH}, 10\mu\text{F}, 1\text{V})$$
+	The resonant frequency of the circuit that fits these parameters is:
+	$$ f_{\text{res}} = \frac{1}{2\pi \sqrt{0.1 \cdot 10^{-5}}} = \frac{10^3}{2 
+	\pi }\approxeq 159.155 \text{Hz}$$
+	And part of the curve given by $|I|(f)$ is found in figure 
+	(\ref{fig:simple-series}).
+	\begin{figure}[h]
+		\label{fig:simple-series}
+		\centering
+		\includegraphics[width=0.784\linewidth,height=0.588\linewidth]{simple-series}
+		\caption{Part of the curve given by |I|(f).}
+	\end{figure}
+	Notice how the amplitude peaks at the resonant frequency, which is 
+	consistent with and imples that the total impedance is at it's minimum at  
+	this frequency.  This is consistent with equation 
+	(\ref{eq:simple-series-magZ_T}).
+	\subsection[CriticalPnts]{Finding the Critical Points}
+	The magnitude of the current is never zero -- it is always positive -- so 
+	$|I|$ has no roots.  To find the critical points, denoted as '$P$', of the 
+	curve given by this 
+	function we must find the roots of the derivative, $|I|'(f)$. \\ \\
+	Let $|I|(f)$ be redefined as:
+	$$ |I|(f):=|I|(f \vert, R, L, C, E_T)$$
+	$$ |I|'(f)=-|E_T|\frac{(X_L-X_C)\left(2\pi L + \frac{1}{2\pi 
+	Cf^2}\right)}{\sqrt{\big(R^2+(X_L-X_C)^2\big)^3}} $$
+	$$ |I|'(P_x)=0$$
+	Multiplying throughout by the denominator and dividing throughout by the 
+	constant factor gives:
+	$$ (X_L(P_x) - X_C(P_x))\left(2\pi L + \frac{1}{2\pi C P_x^2}\right)=0$$
+	To find the first pair of roots, divide throughout by the left factor.
+	$$ 2\pi L + \frac{1}{2\pi C P_x^2} = 0$$
+	$$ \frac{1}{2\pi C P_x^2} = - 2\pi L$$
+	$$ P_x^2 = - \frac{1}{4\pi^2 C L}$$
+	$$ P_x \supset \pm j \frac{1}{2\pi \sqrt{LC}} = \pm j \cdot f_{\text{res}} 
+	$$
+	Imaginary roots are not what we are looking for. \\ \\
+	Now divide throughout by the right hand factor.
+	$$ X_L(P_x) = X_C(P_x)$$
+	$$ P_x^2 = \frac{1}{4\pi^2LC}$$
+	$$ P_x \supset \pm \frac{1}{2 \pi \sqrt{LC}} = \pm f_{\text{res}} $$
 	\section[Series-Parallel]{Resonance in Series-Parallel Circuits}
 	Recall that the resonant frequency is given by:
 	\begin{equation}\tag{\ref{eq:res-freq}}

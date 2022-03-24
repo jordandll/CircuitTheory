@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.3.25)  4 MAR 2022 18:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.3.25)  6 MAR 2022 15:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**main.tex
-(./main.tex
+**MixedFrequency.tex
+(./MixedFrequency.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 7 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -114,8 +114,9 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen112
 \Gin@req@width=\dimen113
-) (./main.aux)
-\openout1 = `main.aux'.
+)
+(./MixedFrequency.aux)
+\openout1 = `MixedFrequency.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
@@ -129,7 +130,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
- (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count99
 \scratchdimen=\dimen114
@@ -198,91 +200,66 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 10.
+LaTeX Font Info:    Try loading font information for U+msa on input line 7.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 10.
+LaTeX Font Info:    Try loading font information for U+msb on input line 7.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 82--86
+)
+Underfull \hbox (badness 10000) in paragraph at lines 15--29
 
  []
 
-<simple-series.png, id=20, 462.528pt x 346.896pt>
-File: simple-series.png Graphic file (type png)
-<use simple-series.png>
-Package pdftex.def Info: simple-series.png  used on input line 100.
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--29
+
+ []
+
+<square-wave-3.png, id=1, 462.528pt x 346.896pt>
+File: square-wave-3.png Graphic file (type png)
+<use square-wave-3.png>
+Package pdftex.def Info: square-wave-3.png  used on input line 37.
+(pdftex.def)             Requested size: 270.48956pt x 202.85658pt.
+<square-wave-5.png, id=3, 462.528pt x 346.896pt>
+File: square-wave-5.png Graphic file (type png)
+<use square-wave-5.png>
+Package pdftex.def Info: square-wave-5.png  used on input line 42.
 (pdftex.def)             Requested size: 270.48956pt x 202.85658pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--113
+LaTeX Warning: `h' float specifier changed to `ht'.
 
- []
+[1
 
-[3] [4 <./simple-series.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 125--128
-
- []
-
-
-Overfull \hbox (17.56532pt too wide) in paragraph at lines 145--145
-[]\OT1/cmr/bx/n/12 Calculating the Res-o-nant Fre-quency of a High-Resistance
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 146--153
-
- []
-
-[5] [6]
-Overfull \hbox (28.9125pt too wide) detected at line 224
-[]
- []
-
-[7] [8]
-Underfull \hbox (badness 10000) in paragraph at lines 295--301
-
- []
-
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 324--331
-
- []
-
-[10] (./main.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <./square-wave-3.png>] 
+[3 <./square-wave-5.png>] (./MixedFrequency.aux) ) 
 Here is how much of TeX's memory you used:
  2327 strings out of 494847
- 30651 string characters out of 6179080
- 88775 words of memory out of 5000000
- 5632 multiletter control sequences out of 15000+600000
+ 30753 string characters out of 6179080
+ 85738 words of memory out of 5000000
+ 5631 multiletter control sequences out of 15000+600000
  6857 words of font info for 27 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 41i,13n,26p,271b,231s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx
-12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/symbols/msbm10.pfb>
-Output written on main.pdf (10 pages, 175013 bytes).
+ 41i,6n,26p,281b,231s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on MixedFrequency.pdf (3 pages, 173951 bytes).
 PDF statistics:
- 92 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
+ 55 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

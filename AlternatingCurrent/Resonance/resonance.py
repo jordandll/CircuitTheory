@@ -35,6 +35,8 @@ def tank_circ_zero_gen(L: float, C: float, E_T: float):
 		E_T: Magnitude of the total voltage in volts (V)."""
 	return lambda f: E_T*abs((C*L*(2*pi*f)**2-1)/(2*pi*f*L))
 
+tank_circ_zero_res = tank_circ_zero_gen
+
 def simple_series(R, L, C, E_T):
 	X_L = X_L_gen(L)
 	X_C = X_C_gen(C)

@@ -1,0 +1,178 @@
+\hypertarget{b11b46ae}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ discharge}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{e988cc97}{}
+\hypertarget{capacitors}{%
+\section{Capacitors}\label{capacitors}}
+
+Suppose we have a circuit with only one component, a capacitor with a
+capacitance of \(C\) farads, along with a power source supplying a
+voltage of \(E\) volts. \[ \frac{1}{C} \int i \cdot dt = V_C = E\]
+
+\hypertarget{in-parallel}{%
+\subsection{In Parallel}\label{in-parallel}}
+
+It then follows that the current drawn by the capacitor that is in
+parallel with other nodes of the circuit is proportional to the
+instantaneous rate of change of the voltage.
+\[ i = C \frac{dV_C}{dt} = C V_C'(t)\] This property makes it a good
+stabilizer. During a voltage spike, it will draw a current that is
+proportional to said spike; Thus subtracting from the total current when
+the voltage is increasing and adding to the total current when the
+voltage is decreasing.
+
+\hypertarget{capacitor-as-a-battery}{%
+\subsection{Capacitor as a Battery}\label{capacitor-as-a-battery}}
+
+Using a capacitor as the battery or power supply of a circuit is one way
+of discharging one. Suppose there is a circuit consisting of only a
+capacitor, serving as the battery or power supply of the circuit, with a
+capacitance of \(C\) farads and an initial charge of \(q_0\) Coloumbs
+and a resistor with a resistance of \(R\) ohms. The following equations
+hold true: \[ V_C + V_R = \frac{1}{C}q(t) + Rq'(t) = 0\] The above is a
+differential equation with the charge in the capacitor, denoted as
+'\(q\)', as the dependent variable and time (\(t\)) as the independent
+variable. As such, the general solution for \(q(t)\) is of the form:
+\[ q(t) := q(t \vert C, R, q_0) = Ae^{mt}\] To solve for \(m\), we use
+the auxiliary equation: \[Rm + \frac{1}{C} = 0\] \[CRm + 1 = 0\]
+\[m = - \frac{1}{CR}\] And to solve for the arbitrary constant,
+\(A \in \mathbb{R}\), we use the IVP:
+\[ q(0) = Ae^{m \cdot 0} = A = q_0\] This leaves us with the specific
+solution for the parametric function that gives the charge in the
+capacitor as a function of time.
+\textbackslash begin\{equation\}\textbackslash label\{eq:charge\} q(t
+\textbackslash vert C, R, q\_0) = q\_0e\^{}\{mt\}
+\textbackslash end\{equation\}
+
+\hypertarget{c14a4ffd}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{help}\NormalTok{(discharge.gen\_charge)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Help on function gen_charge in module discharge:
+
+gen_charge(C, R, q_0)
+    A parametric function that gives the charge in capacitor as a function
+    of time.  The parameters are:
+      C:    The capacitance in farads;
+      R:    The resistance in ohms;
+      q_0:  The initial charge in Coloumbs.
+
+\end{verbatim}
+
+\hypertarget{a058ce86}{}
+\hypertarget{example}{%
+\paragraph{Example}\label{example}}
+
+This is a real life example. I have a \(50\)V \(10\mu\text{F}=10^{-5}\)F
+capacitor that is fully charged. Via the aforementioned fact, the first
+equation of this chapter, and substitution, the initial charge is:
+\[ q_0 = 50 \text{V} \cdot 10^{-5}\text{F}=5 \cdot 10^{-4}\text{C}\]
+Note that the 'C' in the above equation stands for Coloumbs, and is not
+to be confused with '\(C\)', the denotation for the capacitance.\\
+Let '\(q(t)'\) be defined as:
+\[ q(t):=q(t \vert 10\mu \text{F}, 560\Omega, 5 \cdot 10^{-4}\text{C})\]
+If this were used as a power supply to a circuit containing a resistor
+with a resistance of \(560\Omega\), then the charge of a function of
+time would be given by \(q(t)\)
+
+\hypertarget{f72d140f}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{q }\OperatorTok{=}\NormalTok{ discharge.gen\_charge(}\FloatTok{1e{-}5}\NormalTok{, }\DecValTok{560}\NormalTok{, }\FloatTok{5e{-}4}\NormalTok{)}
+\NormalTok{q(}\FloatTok{0.0012}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+0.00040355887350269464
+\end{verbatim}
+
+\leavevmode\vadjust pre{\hypertarget{903bde34}{}}%
+As one can see with the code above, the charge goes down very quickly.
+After just one micro second, the charge goes down by one order of
+magnitude.
+
+\hypertarget{74199df5}{}
+\hypertarget{time-to-discharge}{%
+\subsubsection{Time to Discharge}\label{time-to-discharge}}
+
+The time it takes to discharge to \(X\)\% of the initial charge is given
+by: Let \(t:=t(X):=t(X \vert R, C)\) \[ q_0 \cdot 0.01X = q_0e^{mt} \]
+\[ 10^{-2}X = e^{mt}\] \[ \ln(X)-2\ln(10) = mt\]
+\[ t = t(X) = - CR\big(\ln(X)-2\ln(10)\big) = CR(2\ln10 - \ln X)\]
+
+\hypertarget{example}{%
+\paragraph{Example}\label{example}}
+
+This example uses the same capacitor as the previous example. Below is
+how long it takes in milli seconds to discharge to 5\% of the initial
+charge.
+
+\hypertarget{4f58b735}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{help}\NormalTok{(discharge.gen\_time)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Help on function gen_time in module discharge:
+
+gen_time(C, R)
+    A parametric function that gives the time it takes for the charge in a 
+    capacitor with a capacitance of C farads to reach X% of it's initial charge.
+    The returned function accepts one argument, the desired percent of the initial charge,
+    denoted as 'X'.  Said function returns the time, in seconds, that it takes to reach
+    X% of the initial charge.
+    Parameter:
+      C:    Capacitance in farads;;
+      R:    Resistance in ohms.
+
+\end{verbatim}
+
+\hypertarget{5b365c38}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t }\OperatorTok{=}\NormalTok{ discharge.gen\_time(}\FloatTok{1e{-}5}\NormalTok{, }\DecValTok{560}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}t(10\%)=}\SpecialCharTok{\{}\NormalTok{t(}\DecValTok{10}\NormalTok{)}\SpecialCharTok{:.6f\}}\SpecialStringTok{s=}\SpecialCharTok{\{}\NormalTok{t(}\DecValTok{10}\NormalTok{)}\OperatorTok{*}\DecValTok{1000}\SpecialCharTok{:.3f\}}\SpecialStringTok{ms\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+t(10%)=0.012894s=12.894ms
+\end{verbatim}
+
+\leavevmode\vadjust pre{\hypertarget{6c7feb36}{}}%
+Below is a curve given by \(q(t)\).
+
+\hypertarget{8f63ead2}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\NormalTok{X}\OperatorTok{=}\NormalTok{T}\OperatorTok{=}\NormalTok{np.linspace(}\FloatTok{0.0}\NormalTok{, }\FloatTok{0.013}\NormalTok{, num}\OperatorTok{=}\DecValTok{200}\NormalTok{)}
+\NormalTok{Y}\OperatorTok{=}\NormalTok{Q}\OperatorTok{=}\NormalTok{np.array(}\BuiltInTok{list}\NormalTok{(}\BuiltInTok{map}\NormalTok{(q, T)))}
+\NormalTok{mX}\OperatorTok{=}\NormalTok{X}\OperatorTok{*}\DecValTok{1000}
+\NormalTok{mY}\OperatorTok{=}\NormalTok{Y}\OperatorTok{*}\DecValTok{1000}
+\NormalTok{fig, ax }\OperatorTok{=}\NormalTok{ plt.subplots()}
+\NormalTok{ax.set\_title(}\StringTok{\textquotesingle{}Charge in Capacitor\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax.set\_xlabel(}\StringTok{\textquotesingle{}time (ms)\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax.set\_ylabel(}\StringTok{\textquotesingle{}charge (milli Coloumbs)\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax.plot(mX, mY, label}\OperatorTok{=}\VerbatimStringTok{r\textquotesingle{}R=560 $\textbackslash{}Omega$, C=10$\textbackslash{}mu$F\textquotesingle{}}\NormalTok{)}
+\NormalTok{ax.legend()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+<matplotlib.legend.Legend at 0x7fe7a30c7be0>
+\end{verbatim}
+
+\includegraphics{6f613f9fc38f64643b75777765fb910f4504d5ae.png}
