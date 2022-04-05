@@ -11,8 +11,13 @@ class Resistor:
     def resistance(self, R: float):
         self.R = R
 
+    @property
     def reactance(self):
         return self.R
 
+    @property
     def impedance(self):
         return complex(self.R, 0)
+
+    X = reactance
+    Z = impedance
