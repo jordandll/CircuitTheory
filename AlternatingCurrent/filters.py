@@ -13,16 +13,16 @@ def mag(z: complex):
 class CapacitiveBandPassFilter:
 
     def __init__(self, E: complex, c1: Capacitor, c2: Capacitor, r1: Resistor, load: Resistor):
-        self.E = E;
+        self.E = E
         self.magE = mag(E)
-        self.c1 = self.capacitor1 = c1;
+        self.c1 = self.capacitor1 = c1
         self.C_1 = c1.capacitance
-        self.c2 = self.capacitor2 = c2;
+        self.c2 = self.capacitor2 = c2
         self.C_2 = c2.capacitance
-        self.r1 = self.resistor1 = r1;
-        self.R_1 = r1.resistance;
+        self.r1 = self.resistor1 = r1
+        self.R_1 = r1.resistance
         self.Z_1 = r1.impedance
-        self.load = load;
+        self.load = load
         self.R_L = load.resistance
 
     def _Z_a(self, f):
@@ -70,9 +70,9 @@ class CapacitiveBandPassFilter:
 class InductiveBandPassFilter:
 
     def __init__(self, E: complex, r1: Resistor, l1: Inductor, l2: Inductor, load: Resistor):
-        self.E = E;
+        self.E = E
         self.magE = mag(E)
-        self.r1 = self.resistor1 = r1;
+        self.r1 = self.resistor1 = r1
         self.Z_1 = r1.impedance
         self.l1 = self.inductor1 = l1
         self.l2 = self.inductor2 = l2
@@ -118,7 +118,12 @@ class TwinTBandStopFilter:
                  r3: Resistor,
                  load: Resistor):
         """The low-pass filter section consists of r1, r2, and c1 in a “T” configuration. The high-pass filter
-        section consists of c2, c3, and r3 in a “T” configuration as well. """
+        section consists of c2, c3, and r3 in a “T” configuration as well.
+
+        This kind of filter gives a sharp response when the component values are chosen with the following ratios:
+
+        R_1 = R_2 = 2 * R_3
+        C_1 = C_2 = 0.5 * C_3"""
         self.E = E
 
         self.r1 = self.resistor1 = r1
@@ -131,6 +136,8 @@ class TwinTBandStopFilter:
         self.c3 = self.capacitor3 = c3
 
     def I_34(self, f):
+        """One of the two branch currents that flow through the load.  This function returns the complex number
+        representation of said current."""
         """U := (Z_{R1}+Z_{C1})(R_2 + R_L) + Z_{C1}Z_{R1}"""
         R_1 = self.r1.resistance
         R_3 = self.r3.resistance
@@ -146,9 +153,10 @@ class TwinTBandStopFilter:
         Z_C3 = self.c3.Z
 
         return (self.load.resistance * self.c1.Z(f) * self.E * Q - self.r3.resistance * self.E * U) / (
-                    R_L ** 2 * Q * (R_1 + Z_C1(f)) - U * (R_3 * Z_C2(f) + Q * (Z_C3(f) + R_L)))
+                R_L ** 2 * Q * (R_1 + Z_C1(f)) - U * (R_3 * Z_C2(f) + Q * (Z_C3(f) + R_L)))
 
     def I_24(self, f):
+        """The complex number representation of one of the two branch currents that flow through the load."""
         I_34 = self.I_34(f)
         R_3 = self.r3.resistance
         R_L = self.load.resistance
@@ -156,10 +164,16 @@ class TwinTBandStopFilter:
         Z_C3 = self.c3.Z(f)
         E = self.E
 
-        return (R_3*(E - Z_C2*I_34))/(R_L*(Z_C2+R_3)) - Z_C3*I_34/R_L - I_34
+        return (R_3 * (E - Z_C2 * I_34)) / (R_L * (Z_C2 + R_3)) - Z_C3 * I_34 / R_L - I_34
 
     def load_voltage(self, f):
+        """Returns the complex number representation of the output voltage signal as a function of the frequency (f)."""
         return self.load.impedance * (self.I_34(f) + self.I_24(f))
 
     def load_voltage_mag(self, f):
+        """The amplitude (magnitude) of the output voltage signal as a function of the frequency (f).
+        The frequency of maximum rejection, a.k.a. the  notch frequency, denoted as 'f_notch', which is when the amplitude
+        of the output voltage signal is at its lowest, is given by:
+
+        f_notch = 1/(4*pi*R_3*C_3)"""
         return self.load.resistance * mag(self.I_24(f) + self.I_34(f))

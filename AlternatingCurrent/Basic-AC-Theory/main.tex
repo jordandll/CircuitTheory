@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{mathtools}
 \begin{document}
 	\section[Amplitude]{Measurements of AC Magnitude}
 	\subsection[Peak]{Peak Method}
@@ -36,7 +37,7 @@
 	And the RMS is equal to the square root of MS.
 	$$ RMS = \sqrt{MS} = 0.707$$
 	\paragraph[Relation3]{Now let the function,} $f(x)$ be redefined as 
-	$f(x):=f_1(x)+f_2(x)$, and let $f_1(x):=\big(u(x)-u(x-a)\big)x$ and 
+	$f(x):=f_1(x)+f_2(x)$, and let $f_1(x)\coloneqq\big(u(x)-u(x-a)\big)x$ and
 	$f_2(x):=-f_1(x-a) + a$.
 	$$ \text{AVG}=\frac{\int_{0}^{2a}f(x)\cdot dx}{2a} = 
 	\frac{\int_{0}^{a}f_1(x)\cdot dx + \int_{a}^{2a}f_2(x) \cdot dx}{2a}$$

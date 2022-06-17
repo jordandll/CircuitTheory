@@ -23,7 +23,7 @@ Constant Voltage
 
 $$Ri' + \frac{1}{C} i = 0$$ Multiplying throughout by $C$ gives:
 $$CRi' + i = 0$$ The general solution is of the form:
-$$i\coloneqq i(t)=Ae^{mt}$$ Here, $A \in \mathbb{R}$ is an arbitrary
+$$i\coloneqq i(t)=Ae^{mt}$$ Here, $A \in \math bb{R}$ is an arbitrary
 constant to be solved for using an IVP or IBP, and $m$ is the solution
 to the auxiliary equation (AE): $$CRm + 1 = 0$$ $$m = -\frac{1}{CR}$$ If
 the initial charge in the capacitor is zero then the IVP must be:
