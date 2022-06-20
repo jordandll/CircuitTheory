@@ -19,8 +19,8 @@ class SeriesLCResonantFilter:
         self.load = load
 
     def Z(self, f):
-        """ The total impedance of the circuit (including the load) as a function of the 			frequency (f).
-        Note that this returns the complex number representation of the impedance in 			rectangular form. """
+        """ The total impedance of the circuit (including the load) as a function of the frequency (f).
+        Note that this returns the complex number representation of the impedance in rectangular form. """
         return self.load.impedance + self.L1.impedance(f) + self.C1.impedance(f)
 
     def mag_Z(self, f):
@@ -29,7 +29,7 @@ class SeriesLCResonantFilter:
 
     def I(self, f):
         """ The current flowing circuit as a function of the frequency (f).
-        Note that this returns the complex number representation of the current in 				rectangular form. """
+        Note that this returns the complex number representation of the current in rectangular form. """
         return self.E / self.Z(f)
 
     def mag_I(self, f):
