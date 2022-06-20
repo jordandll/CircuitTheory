@@ -1,7 +1,7 @@
 import numpy as np
-from Components.inductor import Inductor
-from Components.capacitor import Capacitor
-from Components.resistor import Resistor
+from CircuitTheory.Components.inductor import Inductor
+from CircuitTheory.Components.capacitor import Capacitor
+from CircuitTheory.Components.resistor import Resistor
 
 
 def mag(z: complex):
@@ -9,6 +9,38 @@ def mag(z: complex):
     """
     return np.sqrt(z.real ** 2 + z.imag ** 2)
 
+
+class SeriesLCResonantFilter:
+
+    def __init__(self, E: complex, l1: Inductor, c1: Capacitor, load: Resistor):
+        self.E = E
+        self.L1 = l1
+        self.C1 = c1
+        self.load = load
+
+    def Z(self, f):
+        """ The total impedance of the circuit (including the load) as a function of the 			frequency (f).
+        Note that this returns the complex number representation of the impedance in 			rectangular form. """
+        return self.load.impedance + self.L1.impedance(f) + self.C1.impedance(f)
+
+    def mag_Z(self, f):
+        """ The magnitude of total impedance of the circuit (including the load). """
+        return mag(self.Z(f))
+
+    def I(self, f):
+        """ The current flowing circuit as a function of the frequency (f).
+        Note that this returns the complex number representation of the current in 				rectangular form. """
+        return self.E / self.Z(f)
+
+    def mag_I(self, f):
+        return mag(self.I(f))
+
+    def load_voltage(self, f):
+        """ The output voltage signal. """
+        return self.load.resistance * self.I(f)
+
+    def load_voltage_mag(self, f):
+        return mag(self.load_voltage(f))
 
 class CapacitiveBandPassFilter:
 
