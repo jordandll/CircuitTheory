@@ -42,6 +42,41 @@ class SeriesLCResonantFilter:
     def load_voltage_mag(self, f):
         return mag(self.load_voltage(f))
 
+    
+class ParallelBandPassFilter:
+    """ Note that all non-scalar values are returned as complex numbers in rectangular form. """
+    
+    def __init__(self, R1: Resistor, L1: Inductor, C1: Capacitor, load: Resistor, E: complex = complex(1,0)):
+        self.E = E
+        self.R1 = R1
+        self.L1 = L1
+        self.C1 = C1
+        self.load = load
+    
+    # 'Protected' function.
+    def _D(self, f):
+        """ The denominator of the impedance (Z) of the circuit. """
+        return 1/self.R1.impedance + 1/self.C1.impedance(f) + 1/self.L1.impedance(f)
+    
+    def Z(self, f):
+        """ The complex number representation, in rectangular form, of the impedance of the circuit. """
+        return 1/self._D(f)
+    
+    def I(self, f):
+        """ The current flowing through the circuit as a function of the frequency (f). """
+        return self.E/(self.R1.resistance + self.Z(f))
+    
+    def I_3(self, f):
+        """ The branch current flowing through the load as a function of the frequency (f). """
+        return self.C1.impedance(f) * self.L1.impedance(f) * self.I(f) / \
+              (self.C1.impedance(f) * self.L1.impedance(f) + self.load.impedance*(self.C1.impedance(f) \
+                                                                                 + self.L1.impedance(f)))
+    
+    def load_voltage(self, f):
+        """ The output voltage signal as a function of the frequency (f). """
+        return self.load.impedance * self.I_3(f)
+                                                                             
+    
 class CapacitiveBandPassFilter:
 
     def __init__(self, E: complex, c1: Capacitor, c2: Capacitor, r1: Resistor, load: Resistor):
